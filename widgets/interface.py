@@ -3,11 +3,8 @@ from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
 from other import file_management
-from other.flow import FlowLayout
 from other.notification_class import Notification
 from other.switcher import Switcher
-from widgets.blank_notification_widget import BlankNotificationWidget
-from widgets.notification_widget import NotificationWidget
 from widgets.edit_notification_widget import EditNotificationWidget
 from widgets.notification_scroller import NotificationScroller
 

@@ -30,8 +30,11 @@ class EditNotificationWidget(QFrame):
             Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter
         )
 
+        self.top_bar = None
+
     def load_notification(self, notification: Notification) -> None:
         self.notification = notification
+
         self.create_groupboxes()
 
         self.top_bar = TopBar()
@@ -53,7 +56,7 @@ class EditNotificationWidget(QFrame):
 
         self.app_name_gb = EditorBasic("App Name", "app_name")
         self.replaces_id = NumericalEditor("Replaces ID", "replaces_id")
-        self.app_icon = EditorBasic("App Name", "app_icon")
+        self.app_icon = EditorBasic("App Icon", "app_icon")
         self.title = EditorBasic("Title Name", "title")
         self.body = EditorBasic("Body", "body")
         self.duration = NumericalEditor("Duration (ms)", "duration")
@@ -76,6 +79,8 @@ class EditNotificationWidget(QFrame):
             d = self.notification.to_dict()
             d[json_key] = value
             self.notification.from_dict(d)
+            if f"{json_key}" == "title" and self.top_bar:
+                self.top_bar.title_label.setText(value)
 
 
 class EditorBasic(QGroupBox):
